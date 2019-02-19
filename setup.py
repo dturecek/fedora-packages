@@ -118,6 +118,7 @@ setup(
     bugzilla = fedoracommunity.connectors:BugzillaConnector
     yum = fedoracommunity.connectors:YumConnector
     xapian = fedoracommunity.connectors:XapianConnector
+    copr = fedoracommunity.connectors:CoprConnector
 
     [moksha.widget]
     fedoracommunity.bodhi = fedoracommunity.widgets.package.updates:Updates

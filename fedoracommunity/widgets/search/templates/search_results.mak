@@ -5,7 +5,7 @@
     <div class="grid_12 suffix_12" id="search-notes">
       <div id="grid-controls" if="filters.search!=''">
         <div class="message template text-xs-center text-muted py-1" id="info_display">
-           ${'${total_rows}'} results
+           ${'${no_fedora_rows}'} results in Fedora
         </div>
       </div>
     </div>
@@ -29,20 +29,44 @@
           <!-- {{/each}} -->
       </tbody>
     </table>
+
+    <div class="grid_12 suffix_12" id="search-notes">
+      <div id="grid-controls" if="filters.search!=''">
+        <div class="message template text-xs-center text-muted py-1" id="info_display">
+           ${'${no_copr_rows}'} results in Copr
+        </div>
+      </div>
+    </div>
+    <table id="${w.id}" class="table">
+      <tbody class="rowtemplate">
+        <tr class="priority4">
+            <td>
+                <span><a href="${tg.url('${link}')}">${'{{html name}}'}</a></span>
+            </td>
+            <td>
+                ${'{{html description}}'}
+            </td>
+        </tr>
+      </tbody>
+    </table>
+
     <div id="grid-controls">
         <div class="pager text-xs-center mb-3" id="pager" type="more"></div>
    </div>
    <script type="text/javascript">
 
-       function update_search_grid(search_term) {
-            var grid = $("#${w.id}").mokshagrid("request_update", {"filters":{"search": search_term}});
+       function update_search_grid(search_term, fedora, copr) {
+            var grid = $("#${w.id}").mokshagrid("request_update", {"filters":{"search": search_term, "fedora": fedora, "copr": copr}});
        }
 
        function ready_search() {
            var search_term = "${w.filters['search']}";
+           var fedora = "${w.filters['fedora']}";
+           var copr = "${w.filters['copr']}";
+
            if (search_term) {
                search_term = encodeURIComponent(encodeURIComponent(search_term));
-               moksha.defer(this, update_search_grid, [search_term]);
+               moksha.defer(this, update_search_grid, [search_term, fedora, copr], [fedora], [copr]);
            }
 
        }

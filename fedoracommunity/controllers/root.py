@@ -66,12 +66,15 @@ class RootController(BaseController):
         else:
             search_str = kwds.get('search', '')
 
+        fedora = kwds.get('fedora', '')
+        copr = kwds.get('copr', '')
+
         search_str = urllib.unquote_plus(search_str)
 
         tmpl_context.widget = XapianSearchGrid
         return {'title': 'Fedora Packages Search',
                 'options': {'id':'search_grid',
-                            'filters':{'search':search_str}}
+                            'filters':{'search':search_str, 'fedora':fedora, 'copr':copr}}
                }
 
     @expose('mako:fedoracommunity.widgets.templates.widget_loader')

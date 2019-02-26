@@ -52,7 +52,8 @@ class Grid(tw2.forms.widgets.FormField):
     params= ['rows_per_page', 'page_num', 'total_rows',
             'filters', 'unique_key', 'sort_key', 'sort_order',
             'row_template', 'resource', 'resource_path',
-            'loading_throbber', 'uid', 'more_link']
+            'loading_throbber', 'uid', 'more_link', 'fedora_rows',
+            'copr_rows']
     hidden = True # hide from the moksha main menu
 
     id = twc.Param(default=None)
@@ -69,6 +70,9 @@ class Grid(tw2.forms.widgets.FormField):
     loading_throbber = twc.Param(default=None)
     uid = twc.Param(default=None)
     more_link = twc.Param(default=None)
+    fedora_rows = twc.Param(default=0)
+    copr_rows = twc.Param(default=0)
+
     onReady = None
 
     def prepare(self):

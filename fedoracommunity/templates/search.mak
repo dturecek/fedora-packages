@@ -50,10 +50,14 @@
                	</div>
                <script type="text/javascript">
                    function do_search(form) {
+                       var fedora = document.getElementById("search_fedora").checked;
+                       var copr = document.getElementById("search_copr").checked;
+
                        var value = encodeURIComponent(encodeURIComponent(form.search['value']));
+
                        window.history.pushState({search: value}, '',
                                                 form.action + '/' + value);
-                       update_search_grid(value);
+                       update_search_grid(value, fedora, copr);
                        return False;
                    }
                </script>
@@ -66,6 +70,10 @@
                          <span class="input-group-btn">
                            <input type="submit" value="Search" class="btn btn-primary btn-lg" />
                          </span>
+                     </div>
+                     <div>
+                        <input type="checkbox" id="search_fedora" value="fedora" checked />Search in Fedora<br>
+                        <input type="checkbox" id="search_copr" value="copr" />Search in Copr<br>
                      </div>
                </form>
                <div class="clear"></div>
